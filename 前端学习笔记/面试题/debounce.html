@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>debounce</title>
+</head>
+
+<body>
+    <h2>
+        手写 debounce 函数
+    </h2>
+    <input type="text" />
+</body>
+<script>
+    const oinput = document.querySelector('input');
+    oinput.addEventListener('keyup', debounce(() => {
+        console.log(oinput.value)
+    }))
+    function debounce(fn) {
+        let timer = null;
+        return function () {
+            if (timer) {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(() => {
+                fn.call(this, arguments);
+                timer = null;
+            }, 1000);
+        }
+    }
+
+</script>
+
+</html>
